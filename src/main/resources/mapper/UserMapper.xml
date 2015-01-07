@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gov.nc.dao.IUserDao">
+    <resultMap id="UserMap" type="User">
+        <id property="id" column="id" />
+        <result property="userName" column="usrName"/>
+        <result property="userPwd" column="usrPwd"/>
+        <result property="userEmail" column="usrEmail"/>
+    </resultMap>
+    <!-- query data by given id-->
+    <select id="qryById" parameterType="int" resultMap="UserMap">
+        SELECT * FROM USERINFO WHERE ID = #{id}
+    </select>
+    <!-- validate the given user information is rightful or not -->
+    <select id="validUser" parameterType="User" resultType="int">
+        SELECT * FROM  USERINFO WHERE  usrName = #{userName} and usrPwd = #{userPwd}
+    </select>
+    <!--add a new user record -->
+    <insert id="insertUser" parameterType="User" >
+        insert into USERINFO (usrName,usrPwd,usrEmail) values (#{userName},#{userPwd},#{userEmail});
+    </insert>
+    <!-- -->
+    <select id="userLogin" parameterType="User" resultMap="UserMap">
+         SELECT * FROM  USERINFO WHERE  usrName = #{userName} and usrPwd = #{userPwd}
+    </select>
+
+
+</mapper>
