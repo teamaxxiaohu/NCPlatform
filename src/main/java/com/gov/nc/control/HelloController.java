@@ -1,4 +1,4 @@
-package com.gov.nc;
+package com.gov.nc.control;
 
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Controller;
