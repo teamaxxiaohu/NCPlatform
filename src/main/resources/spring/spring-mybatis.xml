@@ -8,27 +8,19 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
        <!-- 扫描注解 -->
+       <mybatis:scan base-package="com.gov.nc.dao" />
+
        <context:component-scan base-package="com.gov.nc">
               <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
        </context:component-scan>
-
-       <tx:annotation-driven transaction-manager="mybatisTransactionManager"/>
-
        <!-- 加载配置 -->
        <context:property-placeholder location="classpath:jdbc/jdbc.properties"/>
 
        <!-- myBatis事务管理,交予spring统一管理 -->
+       <tx:annotation-driven transaction-manager="mybatisTransactionManager"/>
        <bean id="mybatisTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
               <property name="dataSource" ref="mybatisDataSource" />
        </bean>
-
-       <!-- myBatis数据库会话实体 -->
-       <bean id="mybatisSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-              <property name="dataSource" ref="mybatisDataSource" />
-              <property name="configLocation" value="classpath:mybatis/mybatis-context.xml" />
-              <property name="mapperLocations" value="classpath*:/mapper/**Mapper.xml" />
-       </bean>
-
        <!-- myBatis数据源,基于proxool连接池 -->
        <bean id="mybatisDataSource" class="org.apache.commons.dbcp.BasicDataSource">
               <property name="driverClassName" value="${jdbc.driverClassName}" />
@@ -36,6 +28,14 @@
               <property name="username" value="${jdbc.username}" />
               <property name="password" value="${jdbc.password}" />
        </bean>
+       <!-- myBatis数据库会话实体 -->
+       <bean id="mybatisSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+              <property name="dataSource" ref="mybatisDataSource" />
+              <property name="configLocation" value="classpath:mybatis/mybatis-context.xml" />
+              <property name="mapperLocations" value="classpath*:/mapper/**Mapper.xml" />
+       </bean>
 
-       <mybatis:scan base-package="com.gov.nc.dao" />
+       <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+              <property name="basePackage" value="com.gov.nc.dao.*"/>
+       </bean>
 </beans>

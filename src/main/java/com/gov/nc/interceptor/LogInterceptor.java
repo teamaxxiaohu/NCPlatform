@@ -3,9 +3,8 @@ package com.gov.nc.interceptor;
 import com.gov.nc.utils.MongoDBUtil;
 import com.mongodb.BasicDBObject;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 
@@ -17,11 +16,9 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class LogInterceptor {
-
-
     /* 定义切入点 */
-
-    @Pointcut("execution(* com.gov.nc.service..*(..))")
+    @Pointcut("execution(* com.gov.nc.services..*(..))")
+    //@Pointcut("@annotation(com.gov.nc.services.Impl.*)")
     public void pointCut(){}
 
     @After("pointCut()")
@@ -39,7 +36,15 @@ public class LogInterceptor {
         System.out.println(declaringType);
     }
 
+    @Around("pointCut()")
+    public void doOtherLogin(ProceedingJoinPoint pjp){
 
-
-
+        try{
+            System.out.println(" TypeName() "+pjp.getSignature().getDeclaringTypeName());
+            System.out.println(" Target : "+pjp.getTarget());
+            Object obj = pjp.proceed();
+        }catch (Throwable throwable){
+            throwable.printStackTrace();
+        }
+    }
 }

@@ -3,6 +3,7 @@ package com.gov.nc.bean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by Vincent_2 on 2014/12/18.

@@ -1,7 +1,7 @@
 package com.gov.nc.control;
 
 import com.gov.nc.bean.UserEntity;
-import com.gov.nc.service.IUSerService;
+import com.gov.nc.services.IUSerService;
 import com.gov.nc.utils.StringUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

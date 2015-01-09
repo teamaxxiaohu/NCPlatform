@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+
 /**
  * Created by Vincent_2 on 2014/12/19.
  */
@@ -14,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service(value="UserServices")
 public class UserServices implements IUSerService {
 
-    @Autowired
+    @Resource(name = "")
     private IUserDao userDao;
 
     @Override

@@ -6,7 +6,6 @@ import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.context.annotation.Bean;
 
 import java.net.UnknownHostException;
 /**
@@ -20,7 +19,7 @@ import java.net.UnknownHostException;
 public class MongoDBUtil {
 
     private static Log log = LogFactory.getLog(MongoDBUtil.class);
-    private static LoadProperties properties = new LoadProperties("/config.properties");
+    private static LoadProperties properties = new LoadProperties("/jdbc/config.properties");
     private static String host = properties.getValue("mongo.host");
     private static int port = Integer.parseInt(properties.getValue("mongo.port"));
     private static String logDB = properties.getValue("mongo.logDB");

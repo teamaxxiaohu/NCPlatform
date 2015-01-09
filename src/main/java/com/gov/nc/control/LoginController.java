@@ -1,7 +1,7 @@
 package com.gov.nc.control;
 
 import com.gov.nc.bean.UserEntity;
-import com.gov.nc.service.IUSerService;
+import com.gov.nc.services.IUSerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 /**
  * Created by Vincent_2 on 2014/12/24.
  */
+
 @Controller
 public class LoginController {
 
