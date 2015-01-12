@@ -1,7 +1,9 @@
 package com.gov.nc.dao;
 
 /**
- * Created by Vincent_2 on 2014/12/19.
+ * @Author: Vincent_2
+ * 2014/12/19.
+ * @version 1.0
  */
 
 import com.gov.nc.bean.Account;

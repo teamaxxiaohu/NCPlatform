@@ -21,31 +21,21 @@ public class UserServices implements IUSerService {
 
     @Override
     public int validUser(String name ,String pwd) {
-
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUserName(name);
-        userEntity.setUserPwd(pwd);
-        return  userDao.validUser(userEntity);
+        return 0 ;
     }
 
     @Override
     public boolean insertUser(String name, String pwd,String email) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUserName(name);
-        userEntity.setUserPwd(pwd);
-        userEntity.setUserEmail(email);
-        return userDao.insertUser(userEntity) >0;
+        return false;
     }
 
     @Override
     public UserEntity usrLogin(UserEntity user) {
-
-        return userDao.userLogin(user);
+        return null;
     }
 
     @Override
     public UserEntity qryById(int id) {
-
-        return userDao.qryById(id);
+        return  null;
     }
 }

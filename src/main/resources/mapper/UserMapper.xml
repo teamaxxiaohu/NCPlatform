@@ -18,7 +18,7 @@
 
     <insert id="save"  parameterType="Account">
         INSERT INTO Account(_account,_nickName,_password,_cardType,
-        _cardNum,_emailAddress,_bindPhone
+        _cardNum,_emailAddress,
         _phoneNum,_level,_scores,
         _address,_birthday)
         VALUES (
@@ -40,6 +40,6 @@
     </delete>
 
     <delete id="deleteByName" parameterType="string">
-        DELETE FROM Account  WHERE  account=#{name}
+        DELETE FROM Account  WHERE  _account=#{name}
     </delete>
 </mapper>
