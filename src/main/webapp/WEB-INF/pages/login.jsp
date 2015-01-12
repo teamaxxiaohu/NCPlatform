@@ -12,9 +12,6 @@
 <html>
 <head>
     <title>南充12345公共平台</title>
-    <!-- css files links -->
-    <link rel="stylesheet" type="text/css" href="<%=ctxPath%>/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="<%=ctxPath%>/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="<%=ctxPath%>/css/index.css">
 
     <!-- bootstrap css include -->
@@ -23,7 +20,6 @@
 
     <!-- javascript file includes-->
     <script type="text/javascript" src="<%=ctxPath%>/js/jquery-1.11.1.js"></script>
-    <script type="text/javascript" src="<%=ctxPath%>/js/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="<%=ctxPath%>/js/eventHandler.js"></script>
     <script type="text/javascript" src="<%=ctxPath%>/js/index.js"></script>
 

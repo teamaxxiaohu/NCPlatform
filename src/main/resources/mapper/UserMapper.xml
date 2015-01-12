@@ -2,28 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gov.nc.dao.IUserDao">
-    <resultMap id="UserMap" type="User">
-        <id property="id" column="id" />
-        <result property="userName" column="usrName"/>
-        <result property="userPwd" column="usrPwd"/>
-        <result property="userEmail" column="usrEmail"/>
+    <resultMap id="UserMap" type="Account">
+        <id property="id" column="_id" />
+        <result property="account" column="_account"/>
+        <result property="nickName" column="_nickname"/>
+        <result property="password" column="_password"/>
+        <result property="cardNum" column="_cardNum"/>
+        <result property="emailAddress" column="_emailAddress"/>
+        <result property="phoneNum" column="_phoneNum"/>
+        <result property="level"    column="_level"/>
+        <result property="score" column="_score"/>
+        <result property="address" column="_address"/>
+        <result property="birthday" column="_birthday"/>
     </resultMap>
-    <!-- query data by given id-->
-    <select id="qryById" parameterType="int" resultMap="UserMap">
-        SELECT * FROM USERINFO WHERE ID = #{id}
-    </select>
-    <!-- validate the given user information is rightful or not -->
-    <select id="validUser" parameterType="User" resultType="int">
-        SELECT * FROM  USERINFO WHERE  usrName = #{userName} and usrPwd = #{userPwd}
-    </select>
-    <!--add a new user record -->
-    <insert id="insertUser" parameterType="User" >
-        insert into USERINFO (usrName,usrPwd,usrEmail) values (#{userName},#{userPwd},#{userEmail});
+
+    <insert id="save"  parameterType="Account">
+        INSERT INTO Account(_account,_nickName,_password,_cardType,
+        _cardNum,_emailAddress,_bindPhone
+        _phoneNum,_level,_scores,
+        _address,_birthday)
+        VALUES (
+        #{account},#{password},#{nickName},
+        <trim prefix="" suffixOverrides=",">
+            <if test="cardNum != ''"> #{cardNum} ,</if>
+            <if test="emailAddress != ''"> #{emailAddress} ,</if>
+            <if test="phoneNum != ''"> #{phoneNum} ,</if>
+            <if test="level != null"> #{level} ,</if>
+            <if test="score != null"> #{score} ,</if>
+            <if test="address != ''"> #{address} ,</if>
+            <if test="birthday != ''"> #{birthday} ,</if>
+        </trim>
+        )
     </insert>
-    <!-- -->
-    <select id="userLogin" parameterType="User" resultMap="UserMap">
-         SELECT * FROM  USERINFO WHERE  usrName = #{userName} and usrPwd = #{userPwd}
-    </select>
 
+    <delete id="delete" parameterType="Account">
+        DELETE FROM Account where _id = #{id}
+    </delete>
 
+    <delete id="deleteByName" parameterType="string">
+        DELETE FROM Account  WHERE  account=#{name}
+    </delete>
 </mapper>

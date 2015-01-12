@@ -1,31 +1,34 @@
 package com.gov.nc.dao;
 
-import com.gov.nc.bean.UserEntity;
-import org.springframework.stereotype.Component;
-
 /**
  * Created by Vincent_2 on 2014/12/19.
  */
 
-public interface IUserDao {
+import com.gov.nc.bean.Account;
+
+/**
+ * This interface contains several methods to manage account info.
+ * it's not only contains commonly method like CURD, but find by condition(s) as well.
+ * you can even use those methods to update account status . such as  bind phone number , update card number etc.
+ */
+public interface IUserDao{
 
     /**
-     * Valid the given information is a rightful account or not.
-     * @param usr
-     * @return
+     * add a new user, the parameter should contains some required properties.
+     * such as account password  and nickname.
+     * @param account user info.
      */
-    public int validUser(UserEntity usr);
+    void save(Account account);
 
     /**
-     * add a new user record
-     * @param usr user object
-     * @return operate result
+     * default delete method , delete by user id.
+     * @param account user need to be deleted.
      */
-    public int insertUser(UserEntity usr);
+    void delete(Account account);
+
+    void deleteByName(String name);
 
 
-    public UserEntity userLogin(UserEntity usr);
 
-    public UserEntity qryById(int id);
 
 }
