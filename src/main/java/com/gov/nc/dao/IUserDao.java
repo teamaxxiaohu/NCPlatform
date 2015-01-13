@@ -7,6 +7,7 @@ package com.gov.nc.dao;
  */
 
 import com.gov.nc.bean.Account;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * This interface contains several methods to manage account info.
@@ -20,7 +21,7 @@ public interface IUserDao{
      * such as account password  and nickname.
      * @param account user info.
      */
-    void save(Account account);
+    int save(Account account);
 
     /**
      * default delete method , delete by user id.
@@ -28,9 +29,14 @@ public interface IUserDao{
      */
     void delete(Account account);
 
+    /**
+     * valid user login by given information.
+     * @param account user's name
+     * @param password  user's password
+     * @return  the specify user object.
+     */
+    Account userLogin(@Param(value="account")String account , @Param(value="password")String password);
+
     void deleteByName(String name);
-
-
-
 
 }

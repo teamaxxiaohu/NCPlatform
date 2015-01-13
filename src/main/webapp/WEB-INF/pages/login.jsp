@@ -38,12 +38,12 @@
                     <form name="userLogin" action="/doLogin" method="post">
                         <div class="input-group">
                             <span class="input-group-addon">UserName:</span>
-                            <input type="text" name="userName" class="form-control" maxlength="16">
+                            <input type="text" name="account" class="form-control" maxlength="16">
                         </div>
                         <br/>
                         <div class="input-group">
                             <span class="input-group-addon">Password: </span>
-                            <input type="password" name="userPwd" class="form-control" maxlength="16">
+                            <input type="password" name="password" class="form-control" maxlength="16">
                         </div>
                         <br/>
                         <div class="btn_area">

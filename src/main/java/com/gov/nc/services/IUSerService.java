@@ -1,7 +1,7 @@
 package com.gov.nc.services;
 
 
-import com.gov.nc.bean.UserEntity;
+import com.gov.nc.bean.Account;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,21 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 public interface IUSerService {
 
-    /**
-     * validate user's information
-     * @param name user name
-     * @param pwd user password
-     */
-    public int validUser(String name, String pwd);
 
-    /**
-     * add new  System User.
-     * @param name user's name
-     * @param pwd  user's pwd
-     * @return
-     */
-    public boolean insertUser(String name, String pwd, String email);
+    public void insertUser(Account account);
 
-    public UserEntity usrLogin(UserEntity user);
-    public UserEntity qryById(int id);
+    public Account userLogin(String account,String  password);
 }

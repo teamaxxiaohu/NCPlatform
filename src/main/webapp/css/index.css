@@ -35,9 +35,12 @@ input{border: 1px solid lightblue;}
 
 /* register.jsp css area */
 .reg_mainPanel{
-    width:600px;height: 600px; position:fixed; margin-top: -300px; margin-left: -300px; top:50%; left:50%;
+    width:600px;height: auto; position:absolute;   margin-left: -300px;   left:50%;
 }
-
-.lineHeight15{
-    line-height: 5px;
-}
+.lineHeight15{line-height: 5px;  }
+/* show more register information.*/
+.moreInfo{width: inherit; height: auto;line-height: 25px; text-align: right; padding-right: 10px;  }
+/* hidden current element*/
+.hideCurrent{ display: none;}
+/* set auto height */
+.autoHeight{ height: auto;}

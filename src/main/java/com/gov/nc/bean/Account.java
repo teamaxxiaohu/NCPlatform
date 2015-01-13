@@ -35,9 +35,7 @@ public class Account implements Serializable {
      * if <code>DRIVEN_CARD</code> is selected,  <code>cardNum</code>  should be made of 12 numbers;
      * <code>STU_CARD</code> can only used by student ,you can judge it by validating the property birthday.
      */
-    private  enum  LEVEL {
-        ID_CARD, DRIVEN_CARD, STU_CARD,SOCIAL_CARD
-    }
+    private  int cardType ;
 
     /** the number of card which will depends on property <code>cardType</code>
      *  you can find the validate rules on <Code>cardType</Code>
@@ -49,9 +47,7 @@ public class Account implements Serializable {
     private String emailAddress ;
 
     /** State :<CODE>BIND</CODE> has bind phone number to system ,<code>UNBIND</code> otherwise.*/
-    private enum BINDPHONE{
-        BIND,UNBIND
-    }
+    private int bindPhone;
 
     /** phone number -- usually use mobile phone number like 13812345678
      *  but special situation is also considered in system , so  some  like
@@ -84,5 +80,5 @@ public class Account implements Serializable {
     private String address ;
 
     /** user's birthday , on this day , the system will send 100 scores automatically */
-    private Date birthday ;
+    private String birthday ;
 }

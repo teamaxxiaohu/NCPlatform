@@ -7,31 +7,31 @@
         <result property="account" column="_account"/>
         <result property="nickName" column="_nickname"/>
         <result property="password" column="_password"/>
+        <result property="cardType" column="_cardType"/>
         <result property="cardNum" column="_cardNum"/>
         <result property="emailAddress" column="_emailAddress"/>
+        <result property="bindPhone" column="_bindPhone"/>
         <result property="phoneNum" column="_phoneNum"/>
         <result property="level"    column="_level"/>
         <result property="score" column="_score"/>
         <result property="address" column="_address"/>
         <result property="birthday" column="_birthday"/>
     </resultMap>
-
     <insert id="save"  parameterType="Account">
-        INSERT INTO Account(_account,_nickName,_password,_cardType,
-        _cardNum,_emailAddress,
-        _phoneNum,_level,_scores,
-        _address,_birthday)
+        INSERT INTO Account(_account,_nickName,_password,_cardType,_cardNum,_emailAddress,_bindPhone,_phoneNum,_level,_scores,_address,_birthday)
         VALUES (
-        #{account},#{password},#{nickName},
-        <trim prefix="" suffixOverrides=",">
-            <if test="cardNum != ''"> #{cardNum} ,</if>
-            <if test="emailAddress != ''"> #{emailAddress} ,</if>
-            <if test="phoneNum != ''"> #{phoneNum} ,</if>
-            <if test="level != null"> #{level} ,</if>
-            <if test="score != null"> #{score} ,</if>
-            <if test="address != ''"> #{address} ,</if>
-            <if test="birthday != ''"> #{birthday} ,</if>
-        </trim>
+        #{account},
+        #{nickName},
+        #{password},
+        #{cardType},
+        #{cardNum,jdbcType=VARCHAR},
+        #{emailAddress,jdbcType=VARCHAR},
+        #{bindPhone,jdbcType=VARCHAR},
+        #{phoneNum,jdbcType=VARCHAR},
+        #{level},
+        #{score},
+        #{address, jdbcType=VARCHAR},
+        #{birthday,jdbcType=DATE}
         )
     </insert>
 
@@ -42,4 +42,8 @@
     <delete id="deleteByName" parameterType="string">
         DELETE FROM Account  WHERE  _account=#{name}
     </delete>
+    <!-- valid user login-->
+    <select id="userLogin" parameterType="string" resultType="Account">
+        SELECT * FROM account WHERE _account=#{account} AND _password=#{password}
+    </select>
 </mapper>

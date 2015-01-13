@@ -21,7 +21,4 @@
     <typeAliases>
         <typeAlias alias="Account" type="com.gov.nc.bean.Account" />
     </typeAliases>
-    <typeHandlers>
-        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType=""/>
-    </typeHandlers>
 </configuration>
