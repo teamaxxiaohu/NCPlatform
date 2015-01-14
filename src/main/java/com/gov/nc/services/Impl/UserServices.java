@@ -3,12 +3,11 @@ package com.gov.nc.services.Impl;
 import com.gov.nc.bean.Account;
 import com.gov.nc.dao.IUserDao;
 import com.gov.nc.services.IUSerService;
+import com.gov.nc.utils.CommonStatics;
 import com.gov.nc.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
 
 /**
  * Created by Vincent_2 on 2014/12/19.
@@ -52,6 +51,46 @@ public class UserServices implements IUSerService {
     @Override
     public Account userLogin(String account, String password) {
 
-        return iUserDao.userLogin(account,password);
+       Account loginUser =  iUserDao.findUserByNameAndPwd(account, password);
+
+        /* add 5 score for current user and judge whether the level should be modify or not.*/
+        if(loginUser != null){
+            int currentScore = loginUser.getScore() + 5 ;
+            loginUser.setScore(currentScore);
+            loginUser.setLevel(modifyLevelByScore(currentScore));
+        }
+
+        iUserDao.userLogin(loginUser);
+
+        return loginUser;
+    }
+
+    private int modifyLevelByScore(int score){
+
+        int level ;
+        if(isInBound(score,0, 50)){
+            level = CommonStatics.DEFAULT_LEVEL;
+        }else if(isInBound(score,50,100)){
+            level = CommonStatics.LEVEL_TWO ;
+        }else if(isInBound(score, 100, 200)){
+            level = CommonStatics.LEVEL_THREE ;
+        }else if(isInBound(score, 200, 500)){
+            level = CommonStatics.LEVEL_FOUR ;
+        }else {
+            level = CommonStatics.TOP_LEVEL ;
+        }
+
+        return level;
+    }
+
+    /**
+     * judge the given score is in bound or not ,some like 5 is between 0 and 50 .
+     * @param score current score
+     * @param minBound min bound value
+     * @param maxBound max bound value
+     * @return <code>true</code> -- in the bound ,<code>false</code> otherwise.
+     */
+    private boolean isInBound(int score,int minBound ,int maxBound){
+        return score > minBound && score <= maxBound ;
     }
 }

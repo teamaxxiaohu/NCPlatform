@@ -29,13 +29,15 @@ public interface IUserDao{
      */
     void delete(Account account);
 
+
+    int userLogin(Account account);
+
     /**
-     * valid user login by given information.
-     * @param account user's name
-     * @param password  user's password
-     * @return  the specify user object.
+     * find user by the given account info.
+     * @param account user name
+     * @return user
      */
-    Account userLogin(@Param(value="account")String account , @Param(value="password")String password);
+    Account findUserByNameAndPwd(@Param(value="account") String account, @Param(value="password")String password);
 
     void deleteByName(String name);
 

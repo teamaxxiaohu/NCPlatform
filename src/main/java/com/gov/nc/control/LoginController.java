@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by Vincent_2 on 2014/12/24.
@@ -23,7 +24,7 @@ public class LoginController {
     public String usrLogin(String account ,  String password){
 
         if(StringUtil.isNotBlank(account) && StringUtil.isNotBlank(password)){
-           Account curUser =  iuSerService.userLogin(account, password);
+           iuSerService.userLogin(account, password);
         }
 
         return "index";

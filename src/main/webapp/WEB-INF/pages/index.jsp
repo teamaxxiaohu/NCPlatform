@@ -1,3 +1,4 @@
+<%@ page import="com.gov.nc.bean.Account" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vincent_2
@@ -12,6 +13,9 @@
 </head>
 <body>
  This is success page !
- #{session.getAttribute("curUser")}
+ <%
+     Account account = (Account)session.getAttribute("curUser");
+
+ %>
 </body>
 </html>

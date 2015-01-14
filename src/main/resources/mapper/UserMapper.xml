@@ -31,7 +31,7 @@
         #{level},
         #{score},
         #{address, jdbcType=VARCHAR},
-        #{birthday,jdbcType=DATE}
+        #{birthday,jdbcType=VARCHAR}
         )
     </insert>
 
@@ -42,8 +42,12 @@
     <delete id="deleteByName" parameterType="string">
         DELETE FROM Account  WHERE  _account=#{name}
     </delete>
-    <!-- valid user login-->
-    <select id="userLogin" parameterType="string" resultType="Account">
+    <!-- update users score and level if login successful-->
+    <update  id="userLogin" parameterType="Account">
+        UPDATE account set _scores=#{score}+5  AND _level=#{level} WHERE _id=#{id}
+    </update>
+    <!---->
+    <select id="findUserByNameAndPwd" parameterType="map" resultType="Account">
         SELECT * FROM account WHERE _account=#{account} AND _password=#{password}
     </select>
 </mapper>
